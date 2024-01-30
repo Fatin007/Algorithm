@@ -21,7 +21,7 @@ void dfs(int par){
             dfs(child);
         }
     }
-    path[par]=false;
+    path[par]=false; //bair hobar age path clear korbo
 }
 
 int main(){
