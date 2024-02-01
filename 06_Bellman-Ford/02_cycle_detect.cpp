@@ -19,7 +19,6 @@ int main(){
         int u,v,c; cin>>u>>v>>c;
         edgelist.push_back(edge(u,v,c));
     }
-    // memset(dis,INT_MAX,sizeof(dis));
     for(int i=0;i<n;i++){
         dis[i]=INT_MAX;
     }
@@ -35,6 +34,7 @@ int main(){
             }
         }
     }
+    ///detect cycle...........
     bool cycle=false;
     for(auto ed:edgelist){
         int u=ed.u;
