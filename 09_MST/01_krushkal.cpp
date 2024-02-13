@@ -22,18 +22,43 @@ void unionn(int node1,int node2){
     }
 }
 
+class edge{
+public:
+    int u,v,w;
+    edge(int uu,int vv,int ww){
+        u=uu; v=vv; w=ww;
+    }
+};
+bool cmp(edge a, edge b){
+    return a.w<b.w;
+}
 int main(){
     memset(par,-1,sizeof(par));
     memset(Size,1,sizeof(Size));
     int n,e; cin>>n>>e;
-    bool cycle=false;
+    vector<edge>graph;
     while(e--){
-        int x,y; cin>>x>>y;
-        int leadX=find(x);
-        int leadY=find(y);
-        if(leadX==leadY) cycle=true;
-        else unionn(x,y);
+        int u,v,w; cin>>u>>v>>w;
+        graph.push_back(edge(u,v,w));
     }
-    if(cycle) cout<<"Found"<<endl;
-    else cout<<"Not Found"<<endl;
+    sort(graph.begin(),graph.end(),cmp);
+    int total=0;
+    for(auto ed:graph){
+        int leadU=find(ed.u);
+        int leadV=find(ed.v);
+        if(leadU==leadV) continue;
+        else{
+            unionn(ed.u,ed.v);
+            total+=ed.w;
+        }
+    }
+    cout<<total<<endl;
 }
+// 5 7
+// 0 1 2 
+// 0 2 3 
+// 0 3 3 
+// 3 4 6 
+// 2 4 4 
+// 2 1 7
+// 1 4 5
