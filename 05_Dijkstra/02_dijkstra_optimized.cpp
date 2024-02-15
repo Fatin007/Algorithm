@@ -11,7 +11,7 @@ class cmp{
     }
 };
 
-void dijkstra(int src){ // priority_queue lagbe
+void dijkstra(int src){
     priority_queue<pair<int,int>,vector<pair<int,int>>,cmp>q;
     q.push({src,0});
     dis[src]=0;
