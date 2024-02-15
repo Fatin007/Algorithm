@@ -10,7 +10,7 @@ int find(int node){
     par[node]=find(par[node]);
     return par[node];
 }
-void unionn(int node1,int node2){
+void union_by_size(int node1,int node2){
     int lead1=find(node1);
     int lead2=find(node2);
     if(Size[lead1]>Size[lead2]){
@@ -26,11 +26,11 @@ void unionn(int node1,int node2){
 int main(){
     memset(par,-1,sizeof(par));
     memset(Size,1,sizeof(Size));
-    unionn(1,2);
-    unionn(3,2);
-    unionn(4,5);
-    unionn(6,5);
-    unionn(1,5);
+    union_by_size(1,2);
+    union_by_size(3,2);
+    union_by_size(4,5);
+    union_by_size(6,5);
+    union_by_size(1,5);
     cout<<find(1)<<endl;
     cout<<find(4)<<endl;
 }

@@ -9,7 +9,7 @@ int find(int node){
     par[node]=find(par[node]);
     return par[node];
 }
-void unionn(int node1,int node2){
+void union_by_size(int node1,int node2){
     int lead1=find(node1);
     int lead2=find(node2);
     if(Size[lead1]>Size[lead2]){
@@ -48,7 +48,7 @@ int main(){
         int leadV=find(ed.v);
         if(leadU==leadV) continue;
         else{
-            unionn(ed.u,ed.v);
+            union_by_size(ed.u,ed.v);
             total+=ed.w;
         }
     }

@@ -9,7 +9,7 @@ int find(int node){
     par[node]=find(par[node]);
     return par[node];
 }
-void unionn(int node1,int node2){
+void union_by_size(int node1,int node2){
     int lead1=find(node1);
     int lead2=find(node2);
     if(Size[lead1]>Size[lead2]){
@@ -32,7 +32,7 @@ int main(){
         int leadX=find(x);
         int leadY=find(y);
         if(leadX==leadY) cycle=true;
-        else unionn(x,y);
+        else union_by_size(x,y);
     }
     if(cycle) cout<<"Found"<<endl;
     else cout<<"Not Found"<<endl;
