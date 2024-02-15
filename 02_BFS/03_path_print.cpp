@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int N=1e5+10; 
+const int N=1e5+10;
 vector<int>graph[N];
 bool vis[N];
 int level[N];
 int parent[N];
 
-void bfs(int src, int dest){
+void bfs(int src,int dest){
     queue<int>q;
     q.push(src);
     vis[src]=true;

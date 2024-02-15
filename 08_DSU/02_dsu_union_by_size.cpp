@@ -5,7 +5,6 @@ int par[N];
 int Size[N];
 
 int find(int node){
-    // cout<<"fuck"<<endl;
     if(par[node]==-1) return node;
     par[node]=find(par[node]);
     return par[node];
