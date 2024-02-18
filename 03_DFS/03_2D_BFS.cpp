@@ -18,7 +18,6 @@ void bfs(int x,int y){
     while(q.size()){
         pair<int,int> par=q.front();
         int a=par.first, b=par.second;
-        // cout<<a<<" "<<b<<endl;
         q.pop();
         for(int i=0;i<4;i++){
             int ci=a+d[i].first;
