@@ -5,13 +5,14 @@ vector<int>graph[N];
 bool vis[N];
 int level[N];
 int parent[N];
+int dis[N];
 
-void bfs(int src,int dest){
+void bfs(int src){
     queue<int>q;
     q.push(src);
     vis[src]=true;
     level[src]=0;
-    parent[src]=0;
+    dis[src]=0;
     while(q.size()){
         int par=q.front();
         q.pop();
@@ -20,10 +21,8 @@ void bfs(int src,int dest){
                 q.push(child);
                 vis[child]=true;
                 level[child]=level[par]+1;
+                dis[child]=dis[par]+1;
                 parent[child]=par;
-            }
-            if(child==dest){
-                return;
             }
         }
     }
@@ -36,20 +35,21 @@ int main(){
         graph[x].push_back(y);;
         graph[y].push_back(x);;
     }
-    int src,dest; cin>>src>>dest;
+    // int src; cin>>src;
     memset(vis,false,sizeof(vis));
-    memset(level,-1,sizeof(level));
+    memset(dis,-1,sizeof(dis));
     memset(parent,-1,sizeof(parent));
-    bfs(src,dest);
-    int cur=dest;
+    bfs(1);
+    if(dis[n]==-1){
+        cout<<"IMPOSSIBLE"<<endl;
+        return 0;
+    }
+    cout<<dis[n]+1<<endl;
+    int x=n;
     vector<int>path;
-    while(69){
-        if(cur==src){
-            path.push_back(cur);
-            break;
-        }
-        path.push_back(cur);
-        cur=parent[cur];
+    while(x!=-1){
+        path.push_back(x);
+        x=parent[x];
     }
     reverse(path.begin(),path.end());
     for(auto x:path) cout<<x<<" ";
