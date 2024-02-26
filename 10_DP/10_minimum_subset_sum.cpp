@@ -39,3 +39,4 @@ int main(){
     }
     cout<<mn<<endl;
 }
+// Target sum is also same....
