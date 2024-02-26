@@ -3,7 +3,7 @@
 #define endl "\n"
 using namespace std;
 const int N=1e6+10;
-int dp[N];
+ll dp[N];
 
 ll fib(ll n){
     if(n==0 or n==1) return n;
