@@ -4,7 +4,7 @@ using namespace std;
 int main(){
     int n,e; cin>>n>>e;
     int graph[n][n];
-    memset(graph,0,sizeof(graph)); // memset
+    memset(graph,0,sizeof(graph));
     while(e--){
         int x,y; cin>>x>>y;
         graph[x][y]=1;
