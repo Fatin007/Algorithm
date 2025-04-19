@@ -1,7 +1,5 @@
-print('Enter Number of Elements: ')
-n = int(input())
-print('Enter Elements: ')
-a = list(map(int, input().split()))
+n = int(input('Enter Number of Elements: '))
+a = list(map(int, input('Enter Elements (separated by space): ').split()))
 print('Original Array: ', a)
 for i in range(n):
     for j in range(n-i-1):
