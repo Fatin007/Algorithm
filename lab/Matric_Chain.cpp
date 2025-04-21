@@ -1,27 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
-int mc[50][50];
-int DynamicProgramming(int* c, int i, int j){
-   if (i == j) {
-      return 0;
+const int N = 1e3+5;
+// int dp[N][N];
+map<pair<int, int>, int> dp;
+map<pair<int, int>, int> bracket;
+
+int MCM(vector<int> &a, int i, int j){
+   if(i == j) return 0;
+   // if(dp[i][j]!=0) return dp[i][j];
+   if(dp[{i, j}]) return dp[{i, j}];
+   int mn=INT_MAX;
+   for(int k=i; k<j; k++){
+      int left=MCM(a, i, k);
+      int right=MCM(a, k+1, j);
+      int cost=left+right+a[i-1]*a[k]*a[j];
+      if(cost<mn){
+         mn=cost;
+         bracket[{i, j}]=k;
+      }
    }
-   if (mc[i][j] != -1) {
-      return
-         mc[i][j];
-   }
-   mc[i][j] = INT_MAX;
-   for (int k = i; k < j; k++) {
-      mc[i][j] = min(mc[i][j], DynamicProgramming(c, i, k) + DynamicProgramming(c, k + 1, j) + c[i - 1] * c[k] * c[j]);
-   }
-   return mc[i][j];
+   // return dp[i][j]=mn;
+   return dp[{i, j}]=mn;
 }
-int Matrix(int* c, int n){
-   int i = 1, j = n - 1;
-   return DynamicProgramming(c, i, j);
+
+void printBracket(int i, int j){
+   if(i == j) cout<<char('A'+i-1);
+   else{
+      cout<<"(";
+      printBracket(i, bracket[{i, j}]);
+      printBracket(bracket[{i, j}]+1, j);
+      cout<<")";
+   }
 }
+
 int main(){
-   int arr[] = { 23, 26, 27, 20 };
-   int n = sizeof(arr) / sizeof(arr[0]);
-   memset(mc, -1, sizeof mc);
-   cout << "Minimum number of multiplications is: " << Matrix(arr, n);
+   int n; cin>>n;
+   vector<int> a(n+1);
+   for(auto &i : a) cin>>i;
+   cout<<"Minimum multiplication cost: "<<MCM(a, 1, n)<<endl;
+   cout<<"Bracketing: ";
+   printBracket(1, n);
+   cout<<endl;
 }
